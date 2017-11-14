@@ -1,0 +1,13 @@
+{
+    "MENU": {
+        "BRAND": "DOC MANAGER",
+        "OPERATIONS": " Operations",
+        "DISPLAY_FILES": "Display all files",
+        "DELETE_FILE": "Delete files",
+        "UPLOAD_FILES": "Upload files",
+        "FILES": "Files",
+        "PARAGRAPH": "Paragraph",
+        "SEARCH_WORD": "Search word",
+        "SEARCH": "Search"
+    }
+}
