@@ -6,9 +6,10 @@ import { FileUploader } from 'ng2-file-upload';
 import { FileService } from 'app/services/file.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Paragraphs } from 'app/shared/model/paragraphs';
 
 // const URL = '/api/';
-const URL = 'http://localhost:8080/api/file';
+const URL = 'http://localhost:8080/api/fileupload';
 
 @Component({
 	selector: 'app-root',
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
 		url: URL,
 		headers: [{ name: 'Accept', value: 'application/json' }],
 		autoUpload: true
-	});
+	});;
 
 	constructor(private _translate: TranslateService,
 		private _paragraphService: ParagraphsService,
@@ -31,8 +32,15 @@ export class AppComponent implements OnInit {
 		private _router: Router,
 		private _activatedRoute: ActivatedRoute,
 		private fb: FormBuilder) {
+
 		this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-			alert("FIle " + response + " load succesfully / load Status : " + status + " / header : " + JSON.stringify(headers));// the url will be in the response			
+			var jsonResponse = JSON.parse(response);
+			if (status == 201) {
+				alert("FIle " + jsonResponse.filename + " saved (Status : " + status + " )");// the url will be in the response			
+				this._fileService.getFiles("all");
+			}
+			else
+				alert("Error " + jsonResponse);
 		};
 	}
 
@@ -49,6 +57,8 @@ export class AppComponent implements OnInit {
 		// init translator
 		this._translate.addLangs(environment.langs);
 		this._translate.setDefaultLang('en');
+		// for the file uploader
+		//	this.uploader.response.subscribe(res => alert("File upload message" + res));
 	}
 
 	public displayParagraphsOrFiles() {

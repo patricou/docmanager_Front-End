@@ -91,7 +91,10 @@ export class FileService {
 			}
 			//this.nativeWindow.open(objectUrl);
 		},
-			err => alert("Error when opening the file : " + JSON.stringify(err))
+			err => {
+				console.log(JSON.stringify(err));
+				alert("Error when opening the file : " + JSON.stringify(err));
+			}
 		);
 	}
 }

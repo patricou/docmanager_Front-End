@@ -22,7 +22,8 @@
         ],
         "scripts": [
             "../node_modules/jquery/dist/jquery.js",
-            "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            "../node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+            "../node_modules/event-source-polyfill/src/eventsource.min.js"
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {

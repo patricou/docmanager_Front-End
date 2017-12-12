@@ -13,6 +13,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { HomeComponent } from './home/home.component';
 import { AppRouting } from './app.routing';
 import { ListfilesComponent } from './listfiles/listfiles.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DocInterceptor } from 'app/shared/docinterceptor';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +46,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     providers: [
         ParagraphsService,
         FileService,
-        WindowRefService
+        WindowRefService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: DocInterceptor,
+            multi: true,
+        }
     ],
     bootstrap: [AppComponent]
 })
