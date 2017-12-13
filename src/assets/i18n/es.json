@@ -21,7 +21,7 @@
         "FILESAVED": "file '{{param}}' has been saved",
         "ALLFILESDELETED": "All files have been deleted",
         "NOTHINGDELETED": "Nothing have been deleted",
-        "CONFIRMDELETE": "Do you really want to delete all files ?",
+        "CONFIRMDELETE": "Do you really want to delete all data ?",
         "FILEDOWNLOADED": "File '{{param}}' has been downloaded",
         "NOTHINGTODISPLAY": "Nothing to display (or error)!",
         "ALLPARAWITHWORD": "All paragraphs containing '{{param}}' have been retrieved !",

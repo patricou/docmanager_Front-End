@@ -7,9 +7,8 @@ import { FileService } from 'app/services/file.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Paragraphs } from 'app/shared/model/paragraphs';
-
-// const URL = '/api/';
-const URL = 'http://localhost:8080/api/fileupload';
+import { MessagesService } from 'app/services/messages.service';
+import { setTimeout } from 'timers';
 
 @Component({
 	selector: 'app-root',
@@ -18,26 +17,33 @@ const URL = 'http://localhost:8080/api/fileupload';
 })
 export class AppComponent implements OnInit {
 
+	private API_URL: string = environment.API_URL;
+
+	public message: string = "HI!";
+	public messageishidden: boolean = true;
 	public filterForm: FormGroup;
 
 	public uploader: FileUploader = new FileUploader({
-		url: URL,
+		url: this.API_URL + '/fileupload',
 		headers: [{ name: 'Accept', value: 'application/json' }],
 		autoUpload: true
 	});;
 
-	constructor(private _translate: TranslateService,
+	constructor(
+		private _translate: TranslateService,
 		private _paragraphService: ParagraphsService,
 		private _fileService: FileService,
 		private _router: Router,
 		private _activatedRoute: ActivatedRoute,
-		private fb: FormBuilder) {
+		private fb: FormBuilder,
+		private _messagesService: MessagesService
+	) {
 
 		this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
 			var jsonResponse = JSON.parse(response);
 			if (status == 201) {
-				alert("FIle " + jsonResponse.filename + " saved (Status : " + status + " )");// the url will be in the response			
 				this._fileService.getFiles("all");
+				this._messagesService.translateToMessagingWithParam("MESSAGE.FILESAVED", jsonResponse.filename);
 			}
 			else
 				alert("Error " + jsonResponse);
@@ -49,16 +55,26 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		// init translator
+		this._translate.addLangs(environment.langs);
+		this._translate.setDefaultLang("en");
+		// Set language in Browser lang
+		let browserLang = this._translate.getBrowserLang();
+		let lang = browserLang.match(/en|fr|es/) ? browserLang : 'en';
+		this._translate.use(lang);
+		// init the message text
+		this._messagesService.message.subscribe(m => {
+			this.message = m;
+			this.messageishidden = false;
+			setTimeout(() => this.messageishidden = true, 2000);
+		});
+		//Display the welcom message
+		this._messagesService.translateToMessaging("MESSAGE.WELCOME");
 		// init the form
 		this.filterForm = this.fb.group({
 			filesorparagraph: ['paragraphs'],
 			inputfilter: ['patrick', Validators.required]
 		})
-		// init translator
-		this._translate.addLangs(environment.langs);
-		this._translate.setDefaultLang('en');
-		// for the file uploader
-		//	this.uploader.response.subscribe(res => alert("File upload message" + res));
 	}
 
 	public displayParagraphsOrFiles() {
@@ -70,21 +86,27 @@ export class AppComponent implements OnInit {
 	}
 
 	public deleteAllFiles() {
-		if (confirm("Do you really want to delete all data ?")) {
-			this._fileService.delFiles("*").subscribe(res =>
-				alert("Result : " + JSON.stringify(res.body)),
-				err => alert("Error with deleting all file : " + JSON.stringify(err))
-			);
-			alert("All has been deleted");
-		}
-		else {
-			alert("Nothing deleted");
-		}
+		this._messagesService.translate("MESSAGE.CONFIRMDELETE").subscribe(question => {
+			if (confirm(question)) {
+				this._fileService.delFiles("*").subscribe(
+					res => this._messagesService.translateToMessaging("MESSAGE.ALLFILESDELETED"),
+					err => alert("Error with deleting all file : " + JSON.stringify(err))
+				);
+			}
+			else {
+				this._messagesService.translateToMessaging("MESSAGE.NOTHINGDELETED");
+			}
+		});
 	}
 
 	public listfiles(toFind?: string) {
 		if (toFind == "") toFind = "all";
 		this._fileService.getFiles(toFind);
 		this._router.navigate(['listfiles']);
+		if (toFind == "all")
+			this._messagesService.translateToMessaging("MESSAGE.ALLFILESRETRIEVED");
+		else
+			this._messagesService.translateToMessagingWithParam("MESSAGE.FILESRETRIEVED", toFind);
 	}
+
 }

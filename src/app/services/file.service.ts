@@ -1,38 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { WindowRefService } from 'app/services/window-ref.service';
 import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { FileDocument } from '../shared/model/filedocument';
 import { listenerCount } from 'cluster';
+import { environment } from '../../environments/environment';
+import { WindowRefService } from 'app/services/window-ref.service';
+import { MessagesService } from 'app/services/messages.service';
 
 @Injectable()
 export class FileService {
 
-	private API_URL: string = 'http://localhost:8080/api/';
+	private API_URL: string = environment.API_URL;
 
 	public files: BehaviorSubject<FileDocument[]> = new BehaviorSubject(null);
 
 	// Native Window
 	private nativeWindow: any;
 
-	constructor(private _http: HttpClient, private winRef: WindowRefService) {
+	constructor(private _http: HttpClient, private winRef: WindowRefService, private _messagesService: MessagesService) {
 		this.nativeWindow = winRef.getNativeWindow();
 	}
 
 	// GET  files
-	getFiles(part?: string): void {
+	getFiles(toFind?: string): void {
 		let headers = new HttpHeaders({
 			'Author': 'Zeus'
 		});
-		this._http.get<FileDocument[]>(this.API_URL + "files" + "/" + part, {
+		this._http.get<FileDocument[]>(this.API_URL + "files" + "/" + toFind, {
 			headers: headers,
 			observe: 'response'
 		}).subscribe(f => {
 			this.files.next(f.body);
+			//this._messagesService.message.next("All files with '" + toFind + "' have been retrieved !");
 		},
-			err => alert("Error when retrieving files containing " + part + " -> " + JSON.stringify(err)))
+			err => alert("Error when retrieving files containing " + toFind + " -> " + JSON.stringify(err)))
 	}
 	//delete all Files stored in the DB
 	public delFiles(fileId: string): Observable<any> {
@@ -68,7 +71,7 @@ export class FileService {
 	// Open window when click on associate button
 	public openFile(fileName: string): void {
 		this.getFileBlobUrl(fileName).subscribe(blob => {
-			//console.log('blob type : ' + blob.type + " // blob.size : " + blob.size);
+			console.log('blob type : ' + blob.type + " // blob.size : " + blob.size);
 			//IE11 & Edge
 			if (navigator.msSaveBlob) {
 				navigator.msSaveBlob(blob, fileName);
@@ -82,6 +85,7 @@ export class FileService {
 				link.setAttribute('download', fileName);
 				natw.document.body.appendChild(link);
 				link.click();
+				this._messagesService.translateToMessagingWithParam("MESSAGE.FILEDOWNLOADED", fileName);
 				// remove the 				
 				setTimeout(function () {
 					console.log('Object revoked');
@@ -91,10 +95,8 @@ export class FileService {
 			}
 			//this.nativeWindow.open(objectUrl);
 		},
-			err => {
-				console.log(JSON.stringify(err));
-				alert("Error when opening the file : " + JSON.stringify(err));
-			}
+			err =>
+				alert("Error when opening the file : " + JSON.stringify(err))
 		);
 	}
 }

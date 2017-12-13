@@ -7,7 +7,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ListparagraphsComponent } from './listparagraphs/listparagraphs.component';
 import { FileService } from 'app/services/file.service';
-import { WindowRefService } from 'app/services/window-ref.service';
 import { ParagraphsService } from 'app/services/paragraphs.service';
 import { FileUploadModule } from 'ng2-file-upload';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +14,9 @@ import { AppRouting } from './app.routing';
 import { ListfilesComponent } from './listfiles/listfiles.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DocInterceptor } from 'app/shared/docinterceptor';
+import { WindowRefService } from 'app/services/window-ref.service';
+import { MessagesService } from 'app/services/messages.service';
+import { AboutComponent } from './about/about.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         AppComponent,
         ListparagraphsComponent,
         HomeComponent,
-        ListfilesComponent
+        ListfilesComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,
@@ -46,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     providers: [
         ParagraphsService,
         FileService,
+        MessagesService,
         WindowRefService,
         {
             provide: HTTP_INTERCEPTORS,

@@ -8,3 +8,11 @@
 .form-check-label {
     color: white;
 }
+
+.message-margin {
+    margin-top: 130px;
+}
+
+[hidden] {
+    display: none !important;
+}

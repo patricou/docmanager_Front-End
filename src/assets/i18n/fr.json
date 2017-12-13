@@ -1,6 +1,6 @@
 {
     "MENU": {
-        "BRAND": "DOC MANAGER",
+        "BRAND": "@PAT",
         "OPERATIONS": " Opérations",
         "DISPLAY_FILES": "Afficher tous les fichiers",
         "DELETE_FILE": "Supprimer des fichiers",
@@ -8,6 +8,24 @@
         "FILES": "Fichiers",
         "PARAGRAPH": "Paragraphes",
         "SEARCH_WORD": "Chercher un mot",
-        "SEARCH": "Chercher"
+        "SEARCH": "Chercher",
+        "ABOUT": "A Propos"
+    },
+    "HOME": {
+        "DOCMANAGER": "Moteur de recherche pour documents",
+        "COMMENT": "Simplement, Efficacement"
+    },
+    "MESSAGE": {
+        "ALLFILESRETRIEVED": "Voici la liste des fichiers !",
+        "FILESRETRIEVED": "Voici la liste des fichiers contenant '{{param}}' :",
+        "FILESAVED": "le fichier '{{param}}' a été sauvegardé.",
+        "ALLFILESDELETED": "Tous les fichiers ont été supprimés.",
+        "NOTHINGDELETED": "Aucun fichier n'ont été supprimé.",
+        "CONFIRMDELETE": "Voulez-vous vraiment supprimer tous les fichiers ?",
+        "FILEDOWNLOADED": "Le fichier : '{{param}}' a été downloadé",
+        "NOTHINGTODISPLAY": "Aucun paragraphe trouvé !",
+        "ALLPARAWITHWORD": "Tous les paragraphes contenant '{{param}}' ont été retrouvés !",
+        "WELCOME": "Bienvenue dans l'outil de management de Document !!",
+        "CONFIRMDELETEFILE": "DVoulez-vous vraiment supprimer le fichier: '{{param}}' ?"
     }
 }
