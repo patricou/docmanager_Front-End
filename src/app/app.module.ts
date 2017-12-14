@@ -17,6 +17,10 @@ import { DocInterceptor } from 'app/shared/docinterceptor';
 import { WindowRefService } from 'app/services/window-ref.service';
 import { MessagesService } from 'app/services/messages.service';
 import { AboutComponent } from './about/about.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { HightlightwordPipe } from './pipe/hightlightword.pipe';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,10 +33,12 @@ export function HttpLoaderFactory(http: HttpClient) {
         ListparagraphsComponent,
         HomeComponent,
         ListfilesComponent,
-        AboutComponent
+        AboutComponent,
+        HightlightwordPipe
     ],
     imports: [
         BrowserModule,
+        Ng4LoadingSpinnerModule,
         AppRouting,
         FormsModule,
         ReactiveFormsModule,
@@ -44,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        FileUploadModule
+        FileUploadModule,
+        AccordionModule.forRoot()
     ],
     providers: [
         ParagraphsService,

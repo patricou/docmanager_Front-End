@@ -7,6 +7,7 @@ import { PlatformLocation } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { MessagesService } from 'app/services/messages.service';
 import { FormGroup } from '@angular/forms';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 // use EventSourcePolyFill to be abble to run EventSource in ie
 declare const EventSourcePolyfill: any;
@@ -18,7 +19,11 @@ export class ParagraphsService {
 
     public listParagraphs: BehaviorSubject<Paragraphs[]> = new BehaviorSubject(null);
 
-    constructor(private _zone: NgZone, private _pl: PlatformLocation, private _messagesService: MessagesService) {
+    constructor(
+        private _zone: NgZone,
+        private _pl: PlatformLocation,
+        private _messagesService: MessagesService,
+        private spinnerService: Ng4LoadingSpinnerService) {
     };
 
     getParagraphs(toFind: string) {
@@ -38,6 +43,7 @@ export class ParagraphsService {
 
         eventSource.onerror = event => {
             eventSource.close();
+            this.spinnerService.hide();
             if (paragraphsArray.length === 0) {
                 this._messagesService.translateToMessaging("MESSAGE.NOTHINGTODISPLAY");
             } else {

@@ -1,20 +1,17 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="card-group card-outline-primary pat-card" [ngClass]="classApplied" *ngFor="let paragraph of paragraphs">
-            <div class="card">
-                <div class="card-header text-center">
-                    <b>{{paragraph.fromFile}}</b>
-                </div>
-                <div class="card-body">
-                    <div class="card-text" *ngFor="let paragraphElements of paragraph.paragraphElements">
-                        <i>{{paragraphElements.line}}</i>: {{paragraphElements.text}}
-                    </div>
-                </div>
-                <div class="card-footer text-center">
+    <accordion class="mt-4" closeOthers="true">
+        <accordion-group *ngFor="let paragraph of paragraphs">
+            <div accordion-heading>
+                <p class="pull-left mb-0">
                     <button class="btn-sm btn-primary" (click)="openFile(paragraph.fromFile)"><i class="fa fa-files-o" aria-hidden="true"></i></button>
                     <button class="btn-sm btn-danger" (click)="deleteFile(paragraph.fromFileID)"><i class="fa fa-trash-o " aria-hidden="true"></i></button>
-                </div>
+                </p>
+                <p class="pull-left mb-0 ml-3 mt-1"><b>{{paragraph.fromFile}}</b></p>
             </div>
-        </div>
-    </div>
+            <div *ngFor="let paragraphElements of paragraph.paragraphElements">
+                <i>{{paragraphElements.line}}</i>:
+                <span [innerHTML]="paragraphElements.text | hightlightword : 'Patrick'"></span>
+            </div>
+        </accordion-group>
+    </accordion>
 </div>

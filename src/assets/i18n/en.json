@@ -26,6 +26,7 @@
         "NOTHINGTODISPLAY": "Nothing to display (or error)!",
         "ALLPARAWITHWORD": "All paragraphs containing '{{param}}' have been retrieved !",
         "WELCOME": "Welcome in the Doc Manager tool !!",
-        "CONFIRMDELETEFILE": "Do you really want to delete the file '{{param}}' ?"
+        "CONFIRMDELETEFILE": "Do you really want to delete the file '{{param}}' ?",
+        "WAIT": "Please wait ! "
     }
 }

@@ -26,6 +26,7 @@
         "NOTHINGTODISPLAY": "Aucun paragraphe trouvé !",
         "ALLPARAWITHWORD": "Tous les paragraphes contenant '{{param}}' ont été retrouvés !",
         "WELCOME": "Bienvenue dans l'outil de management de Document !!",
-        "CONFIRMDELETEFILE": "DVoulez-vous vraiment supprimer le fichier: '{{param}}' ?"
+        "CONFIRMDELETEFILE": "DVoulez-vous vraiment supprimer le fichier: '{{param}}' ?",
+        "WAIT": "Attendez SVP ! "
     }
 }

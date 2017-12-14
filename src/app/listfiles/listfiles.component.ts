@@ -34,5 +34,6 @@ export class ListfilesComponent implements OnInit {
                 }),
                     err => alert("Error when deleting file " + fileName + " -> " + JSON.stringify(err));
             }
-        }
+        })
+    }
 }

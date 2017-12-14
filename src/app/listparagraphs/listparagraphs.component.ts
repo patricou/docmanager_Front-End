@@ -3,22 +3,17 @@ import { Observable } from 'rxjs/Observable';
 import { Paragraphs } from 'app/shared/model/paragraphs';
 import { ParagraphsService } from '../services/paragraphs.service';
 import { FileService } from '../services/file.service';
+import { HightlightwordPipe } from '../pipe/hightlightword.pipe';
 
 @Component({
 	selector: 'app-listparagraphs',
 	templateUrl: './listparagraphs.component.html',
 	styleUrls: ['./listparagraphs.component.css'],
-	encapsulation: ViewEncapsulation.None
+	providers: [HightlightwordPipe]
 })
 export class ListparagraphsComponent implements OnInit {
 
 	public paragraphs: Paragraphs[] = null;
-	@Input()
-	public col46: boolean;
-	public classApplied = {
-		"col-lg-4": this.col46,
-		"col-lg-6": !this.col46
-	};
 
 	constructor(private _paragraphsService: ParagraphsService, private _fileService: FileService) {
 	}
