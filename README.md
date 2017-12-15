@@ -1,6 +1,21 @@
-# Docmanager
+## DOC MANAGER Web Application ( Front-End part).
+This Application allows you to find informations contained in your documents (txt,pdf,docx) very fastley.
+This Application is reactive from the DB until the Browser, in particular for the list of paragraphs funcionnality.
+It means as soon as some Data are retieved in the DB, it is displayed in the browser (It doesn't wait for the full results before displaying it).
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+<a href="http://patdesch.eu-central-1.elasticbeanstalk.com">Test here ( Localized on AWS ).</a>
+
+# Implemented with 
+
+- Angular 2 (5.0.1)
+    - ng2-file-upload, ngx-translate, ng4-loading-spinner ...
+    - rxjs (Observable, BehaviorSubject )
+    - JavaScript, TypeScript 2.4.2 
+- Boostrap v4.0.0-beta.2, HTML 5, CSS 3 
+- Tools : Node 6.10.3, npm, Angular CLI 1.6.0, Visual Studio Code 
+- GIT, Github
+
+# This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

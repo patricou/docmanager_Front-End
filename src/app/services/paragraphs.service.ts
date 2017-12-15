@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { MessagesService } from 'app/services/messages.service';
 import { FormGroup } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 // use EventSourcePolyFill to be abble to run EventSource in ie
 declare const EventSourcePolyfill: any;
@@ -18,6 +19,8 @@ export class ParagraphsService {
     private API_URL: string = environment.API_URL;
 
     public listParagraphs: BehaviorSubject<Paragraphs[]> = new BehaviorSubject(null);
+    // use in listparagraphComponents to highlight the text
+    public toFind: BehaviorSubject<string> = new BehaviorSubject(null);
 
     constructor(
         private _zone: NgZone,
@@ -27,6 +30,7 @@ export class ParagraphsService {
     };
 
     getParagraphs(toFind: string) {
+        this.toFind.next(toFind);
         const paragraphsArray: Paragraphs[] = new Array();
         this.listParagraphs.next(paragraphsArray);
 

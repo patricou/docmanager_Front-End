@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 	public message: string = "HI!";
 	public messageishidden: boolean = true;
 	public filterForm: FormGroup;
-	template: string = `<img src="http://pa1.narvii.com/5722/2c617cd9674417d272084884b61e4bb7dd5f0b15_hq.gif">`
+	public template: string = `<img src="http://pa1.narvii.com/5722/2c617cd9674417d272084884b61e4bb7dd5f0b15_hq.gif">`
 
 	public uploader: FileUploader = new FileUploader({
 		url: this.API_URL + '/fileupload',
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
 		// init the form
 		this.filterForm = this.fb.group({
 			filesorparagraph: ['paragraphs'],
-			inputfilter: ['patrick', Validators.required]
+			inputfilter: ['', Validators.required]
 		})
 	}
 

@@ -14,14 +14,16 @@ import { HightlightwordPipe } from '../pipe/hightlightword.pipe';
 export class ListparagraphsComponent implements OnInit {
 
 	public paragraphs: Paragraphs[] = null;
-
+	public toFind: string;
 	constructor(private _paragraphsService: ParagraphsService, private _fileService: FileService) {
 	}
 
 	ngOnInit() {
+
 		this._paragraphsService.listParagraphs.subscribe(paragraphs => {
 			this.paragraphs = paragraphs;
 		})
+		this._paragraphsService.toFind.subscribe(toFind => this.toFind = toFind);
 	}
 
 	openFile(file: string) {

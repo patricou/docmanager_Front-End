@@ -15,7 +15,7 @@ export class HightlightwordPipe implements PipeTransform {
             if (startIndex != -1) {
                 let endLength = args.length;
                 let matchingString = value.substr(startIndex, endLength);
-                return value.replace(matchingString, "<b class='bg-warning text-white' >" + matchingString + "</b>");
+                return value.replace(matchingString, "<b class='bg-warning'>" + matchingString + "</b>");
             }
 
         }

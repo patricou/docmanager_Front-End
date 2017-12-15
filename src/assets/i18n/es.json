@@ -28,5 +28,17 @@
         "WELCOME": "Welcome in the Doc Manager tool !!",
         "CONFIRMDELETEFILE": "Do you really want to delete the file '{{param}}' ?",
         "WAIT": "Please wait ! "
+    },
+    "ABOUT": {
+        "TITLE": "Main Features",
+        "FRONTEND": "Front End",
+        "BACKEND": "Back End",
+        "DATA": "Data",
+        "SECURITY": "Security",
+        "REF": "Imagined, designed and implemented by",
+        "NOTHING": "Nothing",
+        "COMMENT1": "This Application allows you to find informations contained in your documents (txt,pdf,docx) very fastley.",
+        "COMMENT2": "This Application is reactive from the DB until the Browser, in particular for the list of paragraphs funcionnality.",
+        "COMMENT3": "It means as soon as some Data are retieved in the DB, it is displayed in the browser (It doesn't wait for the full results before displaying it)."
     }
 }

@@ -28,5 +28,17 @@
         "WELCOME": "Bienvenue dans l'outil de management de Document !!",
         "CONFIRMDELETEFILE": "DVoulez-vous vraiment supprimer le fichier: '{{param}}' ?",
         "WAIT": "Attendez SVP ! "
+    },
+    "ABOUT": {
+        "TITLE": "Principales Caractéristiques",
+        "FRONTEND": "Coté CLient",
+        "BACKEND": "Coté Serveur",
+        "DATA": "Données",
+        "SECURITY": "Sécurité",
+        "REF": "Imaginé, Designé et implementé par",
+        "NOTHING": "Rien",
+        "COMMENT1": "Cette application sert à retrouver les informations contenus dans vos documents (txt,pdf,docx) trés rapidement. ",
+        "COMMENT2": "Cette application est reactive depuis la base de donnée jusqu'au browser, en particulier pour la liste des paragraphes.",
+        "COMMENT3": "Cela veut dire que ca marche par Flux : des qu'une donnée est trouvée dans la DB elle s'affiche dans le browser, et cela n'attend pas le resultat complet avant d'afficher."
     }
 }
