@@ -3,5 +3,5 @@ export const environment = {
   // Langages for the translator
   langs: ["en", "fr", "es"],
   // Rest url config
-  API_URL: '/api/'
+  API_URL: '/patdoc/api'
 };

@@ -3,7 +3,7 @@ This Application allows you to find informations contained in your documents (tx
 This Application is reactive from the DB until the Browser, in particular for the list of paragraphs funcionnality.
 It means as soon as some Data are retieved in the DB, it is displayed in the browser (It doesn't wait for the full results before displaying it).
 
-<a href="http://patdesch.eu-central-1.elasticbeanstalk.com">Test here ( Localized on AWS ).</a>
+<a href="http://patdesch.eu-central-1.elasticbeanstalk.com">Test here.</a>
 
 # Implemented with 
 
@@ -45,7 +45,7 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## issues
+## Issues
 
 - I have added a context-path the 2018-07-29
 and after error 404 to load en.json, fr.json (i18n)
