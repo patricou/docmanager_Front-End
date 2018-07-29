@@ -18,7 +18,7 @@ It means as soon as some Data are retieved in the DB, it is displayed in the bro
 # This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/patdoc`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -47,12 +47,12 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 
 ## issues
 
-I have added a context-path the 2018-07-29
+- I have added a context-path the 2018-07-29
 and after error 404 to load en.json, fr.json (i18n)
-to fix this :
-    in app.module.ts :
+-to fix this :
+    - In app.module.ts :
         return new TranslateHttpLoader(http<b>, "./assets/i18n/", ".json"</b>);
-    then to run it in dev :
+    - then to run it in dev :
         ng serve --base-href=/patdoc/
-    to build it to prod :
+    - to build it to prod :
         ng build --env=prod  --base-href=/patdoc/
