@@ -45,3 +45,14 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## issues
+
+I have added a context-path the 2018-07-29
+and after error 404 to load en.json, fr.json (i18n)
+to fix this :
+    in app.module.ts :
+        return new TranslateHttpLoader(http<b>, "./assets/i18n/", ".json"</b>);
+    then to run it in dev :
+        ng serve --base-href=/patdoc/
+    to build it to prod :
+        ng build --env=prod  --base-href=/patdoc/
