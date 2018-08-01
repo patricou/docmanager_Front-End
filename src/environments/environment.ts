@@ -8,5 +8,5 @@ export const environment = {
     // Langages for the translator
     langs: ["en", "fr", "es"],
     // Rest url config
-    API_URL: 'http://localhost:8011/patdoc/api'
+    API_URL: 'http://localhost:8011/patdoc/api/'
 };
